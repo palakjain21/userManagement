@@ -12,6 +12,37 @@ export default function Form() {
   const [status, setStatus] = useState("Enable");
 
   const navigate = useNavigate();
+
+  const handleNameValidation = (e) => {
+    const name = e.target.value;
+    const namePattern = /^[a-zA-Z ]{2,30}$/;
+    if (namePattern.test(name)) {
+      setName(name);
+    } else {
+      alert("Enter valid name");
+    }
+  };
+
+  const handleEmailValidation = (e) => {
+    const email = e.target.value;
+    const emailPattern = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-zA-Z0-9.-]+$/;
+    if (emailPattern.test(email)) {
+      setEmail(email);
+    } else {
+      alert("Enter valid email");
+    }
+  };
+
+  const handleMobileValidation = (e) => {
+    const mobile = e.target.value;
+    const mobilePattern = /^[0-9]{10}$/;
+    if (mobilePattern.test(mobile)) {
+      setMobile(mobile);
+    } else {
+      alert("Enter valid mobile number");
+    }
+  };
+
   const handleAddUser = async (e) => {
     e.preventDefault();
     const data = {
@@ -54,7 +85,7 @@ export default function Form() {
               placeholder="Enter your name"
               required
               class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-              onChange={(e) => setName(e.target.value)}
+              onBlur={handleNameValidation}
             />
           </div>
           <div class="mb-6">
@@ -67,7 +98,7 @@ export default function Form() {
               placeholder="Enter your email"
               required
               class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-              onChange={(e) => setEmail(e.target.value)}
+              onBlur={handleEmailValidation}
             />
           </div>
           <div class="mb-6">
@@ -80,7 +111,7 @@ export default function Form() {
               placeholder="Enter your mobile number"
               required
               class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md  focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
-              onChange={(e) => setMobile(e.target.value)}
+              onBlur={handleMobileValidation}
             />
           </div>
 
